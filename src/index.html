@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Fold — интерактивный концепт складного смартфона. Рассмотрите каждую грань, раскройте экран и найдите свой цвет.">
+  <title>Fold — Больше, чем кажется.</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231d1d1f'/%3E%3Cpath d='M9 23V9l7 3 7-3v14l-7-3zM16 12v8' fill='none' stroke='white' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Перейти к содержимому</a>
+  <header class="global-header" id="top">
+    <nav class="global-nav wrap" aria-label="Основная навигация">
+      <a class="brand" href="#top" aria-label="Fold — главная"><svg viewBox="0 0 26 26" aria-hidden="true"><path d="M4 22V4l9 4 9-4v18l-9-4zM13 8v10"/></svg></a>
+      <a href="#highlights">Знакомство</a><a href="#design">Дизайн</a><a href="#experience">Возможности</a><a href="#studio">Ваш Fold</a>
+      <span class="edition">DESIGN STUDY — 01</span>
+    </nav>
+  </header>
+  <div class="product-bar">
+    <div class="wrap product-nav"><a class="product-name" href="#top">Fold<span>Концепт</span></a><div class="nav-actions"><a class="pill outline magnetic" href="#design">Обзор</a><a class="pill blue magnetic" href="#studio">Попробовать</a></div></div>
+  </div>
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy wrap">
+        <p class="launch reveal">Знакомьтесь. Новая перспектива.</p>
+        <p class="product-kicker reveal">Fold</p>
+        <h1 id="hero-title"><span class="line"><span>Больше, чем</span></span><span class="line"><span>кажется.</span></span></h1>
+        <p class="hero-sub reveal">Целый мир. В одном движении.</p>
+      </div>
+      <div class="hero-stage" id="hero-stage">
+        <div class="stage-watermark" aria-hidden="true">Раскройте.</div>
+        <div class="device-fallback" id="device-fallback" role="img" aria-label="Складной смартфон с двумя половинами экрана"><div><span>09:41</span></div><div></div></div>
+        <canvas id="product-canvas" aria-label="Интерактивная 3D-модель Fold. Вращайте перетаскиванием; угол раскрытия можно изменить ползунком ниже."></canvas>
+        <div class="stage-caption"><span class="live-dot"></span><span id="scene-status" role="status">Исследуйте со всех сторон</span></div>
+        <span class="stage-index" aria-hidden="true">01 / FOLD</span>
+      </div>
+      <div class="hero-bottom wrap">
+        <p class="interaction-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-4-4 4 4-4 4M9 8l-4 4 4 4"/></svg><span>Потяните, чтобы повернуть</span></p>
+        <div class="hero-callout"><div><strong>Две грани. Одно целое.</strong><span>Ваше знакомство начинается здесь.</span></div><button class="pill blue magnetic" id="fold-toggle" aria-pressed="false">Сложить <span aria-hidden="true">↗</span></button></div>
+        <a class="scroll-cue" href="#highlights">Листайте ниже <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="fold-control wrap"><label for="fold-range">Угол раскрытия <output for="fold-range" id="fold-output">156°</output></label><input type="range" min="20" max="180" value="156" id="fold-range" aria-label="Угол раскрытия смартфона в градусах"></div>
+    </section>
+    <nav class="chapter-nav wrap" aria-label="Разделы страницы"><a href="#highlights">Главное</a><a href="#design">Форма</a><a href="#experience">Пространство</a><a href="#studio">Ваш цвет</a></nav>
+    <section class="highlights mist" id="highlights" aria-labelledby="highlights-title">
+      <div class="section-head wrap"><h2 id="highlights-title" class="reveal">Маленький жест.<br><span>Большая разница.</span></h2><button class="text-link" id="tour-button">Смотреть по порядку <span aria-hidden="true">↗</span></button></div>
+      <div class="carousel" id="carousel" aria-label="Особенности Fold" tabindex="0">
+        <article class="feature-card"><div class="card-copy"><p class="eyebrow">01 — ПРОСТРАНСТВО</p><h3>Откройте больше.<br>В буквальном смысле.</h3></div><img id="render-open" class="product-render" alt="Раскрытый Fold с большим экраном" width="1000" height="800"><span class="card-note">Один экран. Совсем другой масштаб.</span></article>
+        <article class="feature-card"><div class="card-copy"><p class="eyebrow">02 — МАТЕРИАЛ</p><h3>Характер.<br>В каждой грани.</h3></div><img id="render-back" class="product-render" alt="Металлический корпус и камеры Fold" width="1000" height="800"><span class="card-note">Тактильная точность. Ничего лишнего.</span></article>
+        <article class="feature-card"><div class="card-copy"><p class="eyebrow">03 — ДВИЖЕНИЕ</p><h3>Всё меняется.<br>Одним движением.</h3></div><img id="render-folded" class="product-render" alt="Полусложенный Fold, вид на шарнир" width="1000" height="800"><span class="card-note">От личного пространства — к большому.</span></article>
+      </div>
+      <div class="carousel-bottom wrap"><p id="slide-caption" aria-live="polite">01 — Пространство</p><div class="playback"><div class="dots" aria-label="Выбор слайда"><button aria-label="Слайд 1: пространство" aria-current="true" data-slide="0"></button><button aria-label="Слайд 2: материал" data-slide="1"></button><button aria-label="Слайд 3: движение" data-slide="2"></button></div><button id="play-toggle" aria-label="Включить автопоказ"><span aria-hidden="true">▶</span></button></div><div class="arrows"><button id="prev-slide" aria-label="Предыдущий слайд">←</button><button id="next-slide" aria-label="Следующий слайд">→</button></div></div>
+    </section>
+    <section class="design-section wrap" id="design" aria-labelledby="design-title">
+      <div class="editorial-copy"><p class="eyebrow reveal">ДИЗАЙН</p><h2 id="design-title" class="reveal">Сложная<br>инженерия.<br><span>Простой жест.</span></h2><p class="body-copy reveal">Две тонкие грани соединяются в одну спокойную форму. Чистые линии, матовый металл и шарнир, вокруг которого выстроено всё.</p><a class="text-link" href="#studio">Рассмотреть ближе <span aria-hidden="true">↗</span></a></div>
+      <div class="editorial-media"><span class="editorial-word" aria-hidden="true">fold.</span><img id="render-detail" alt="Крупный план складного корпуса и шарнира" width="1100" height="1200"><div class="material-caption"><span class="tiny-rule"></span>Точность, которую чувствуешь.</div></div>
+      <div class="design-footnote"><span>Меньше снаружи.</span><span>Больше внутри.</span><span aria-hidden="true">↘</span></div>
+    </section>
+    <section class="experience mist" id="experience" aria-labelledby="experience-title">
+      <div class="wrap"><div class="section-head"><div><p class="eyebrow reveal">ПРОСТРАНСТВО ДЛЯ ВАШЕГО</p><h2 id="experience-title" class="reveal">Мыслите шире.</h2></div><p class="section-intro reveal">Идеям нужно место.<br>Теперь оно всегда с вами.</p></div>
+      <div class="experience-card"><div class="experience-text"><span class="eyebrow">В РИТМЕ ДНЯ</span><h3 id="experience-heading">Две задачи.<br>Один момент.</h3><p id="experience-copy">Маршрут рядом с планами. Заметки рядом с вдохновением. Всё важное — перед глазами.</p><div class="mode-tabs" role="tablist" aria-label="Сценарии использования"><button id="tab-work" role="tab" aria-selected="true" aria-controls="screen-demo" data-mode="work">Создавайте</button><button id="tab-read" role="tab" aria-selected="false" aria-controls="screen-demo" tabindex="-1" data-mode="read">Читайте</button><button id="tab-view" role="tab" aria-selected="false" aria-controls="screen-demo" tabindex="-1" data-mode="view">Смотрите</button></div></div>
+      <div class="demo-device" id="screen-demo" role="tabpanel" aria-labelledby="tab-work"><div class="demo-screen" data-mode="work"><div class="demo-left"><span class="demo-date">ПОНЕДЕЛЬНИК, 21</span><strong>Хороший день<br>для новых идей.</strong><span class="demo-line"></span><span class="demo-line short"></span><div class="demo-note"><span>09:41</span><p>Замечать.<br>Пробовать.<br>Создавать.</p></div></div><div class="demo-right"><div class="art-orbit"></div><span>НАЙДИТЕ СВОЮ<br>ТОЧКУ ЗРЕНИЯ.</span></div></div><span class="demo-hinge"></span></div></div></div>
+    </section>
+    <section class="studio wrap" id="studio" aria-labelledby="studio-title"><div class="studio-heading"><p class="launch reveal">Форма одна. Характер — ваш.</p><h2 id="studio-title" class="reveal">Какой ваш Fold?</h2><p>Выберите оттенок. Посмотрите с новой стороны.</p></div><div class="studio-grid"><div class="studio-image"><img id="render-color" alt="Fold в цвете натуральный титан" width="1000" height="900"></div><div class="studio-options"><p class="product-kicker">Fold</p><h3 id="color-name" aria-live="polite">Натуральный<br>титан.</h3><div class="swatches" role="group" aria-label="Цвет корпуса"><button class="swatch titanium" data-color="titanium" aria-label="Натуральный титан" aria-pressed="true"></button><button class="swatch graphite" data-color="graphite" aria-label="Графит" aria-pressed="false"></button><button class="swatch silver" data-color="silver" aria-label="Серебристый" aria-pressed="false"></button></div><p class="studio-description" id="color-description">Тёплый оттенок металла.<br>Сдержанный, но не незаметный.</p><a class="pill blue magnetic studio-cta" href="#top" id="back-to-model">Исследовать в 3D <span aria-hidden="true">↗</span></a><p class="concept-note">Концептуальное устройство.<br>Создано, чтобы исследовать возможности.</p></div></div></section>
+    <section class="closing wrap"><span class="brand closing-mark" aria-hidden="true"><svg viewBox="0 0 26 26"><path d="M4 22V4l9 4 9-4v18l-9-4zM13 8v10"/></svg></span><p class="reveal">Большие идеи<br>начинаются с раскрытия.</p><a class="text-link" href="#top">Ещё один взгляд <span aria-hidden="true">↑</span></a></section>
+  </main>
+  <footer class="mist"><div class="wrap"><p class="footer-note">Fold — независимый дизайн-концепт складного устройства. Не является продуктом Apple и не связан с Apple Inc. Изображения созданы в реальном времени; устройство не предлагается к продаже.</p><div class="footer-bottom"><span>Fold © 2026 · Design study</span><a href="#top">Наверх ↑</a><button class="motion-toggle" id="motion-toggle" aria-pressed="false">Уменьшить движение</button></div></div></footer>
+  <div class="custom-cursor" id="custom-cursor" aria-hidden="true"><span>Тянуть</span></div>
+  <noscript><div class="noscript-note">Для интерактивной 3D-сцены включите JavaScript. Описание и навигация доступны без него.</div></noscript>
+  <script src="script.js"></script>
+</body>
+</html>
